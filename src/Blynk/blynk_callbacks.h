@@ -2,12 +2,12 @@
 #define BLYNK_CALLBACKS_H
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Schritt 1: Template‐Makros bekanntmachen
+// Template‐Makros bekanntmachen
 // ──────────────────────────────────────────────────────────────────────────────
 #include "BlynkConfig.h"
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Schritt 2: Nur Makros und Typen aus BlynkApiArduino.h einbinden
+// Nur Makros und Typen aus BlynkApiArduino.h einbinden
 // ➔ KEIN globales Objekt "Blynk" erzeugen
 // ──────────────────────────────────────────────────────────────────────────────
 #include <BlynkApiArduino.h>  
@@ -15,12 +15,17 @@
 //    aber **kein** `BlynkClass Blynk;`-Definition.
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Schritt 3: Deine eigene Blinker‐Klasse
+// Eigene Klasse
 // ──────────────────────────────────────────────────────────────────────────────
 #include "Blinker/blinker.h"
-
+#include "Lenkung/lenkung.h"
+// ─────────────────────────────────────────────────────────────────────────────
+// Globale Instanzen der Klassen Blinker und Lenkung
 // ──────────────────────────────────────────────────────────────────────────────
-// Schritt 4: Deklaration der Callback‐Setup‐Funktion
+extern Blinker blinker;
+extern Lenkung lenkung;
+// ──────────────────────────────────────────────────────────────────────────────
+// Deklaration der Callback‐Setup‐Funktion
 //           (Wird in blynk_callbacks.cpp definiert)
 // ──────────────────────────────────────────────────────────────────────────────
 void setupBlynkCallbacks();

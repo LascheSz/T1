@@ -1,5 +1,6 @@
 #include "blynk_callbacks.h"  // Enthält nun BlynkConfig + BlynkApiArduino + Blinker
 
+
 extern Blinker blinker;     // Verweist auf dieselbe Instanz aus main.cpp
 
 // ──────────────────────────────────────────────────────────────────────────────
@@ -41,4 +42,10 @@ BLYNK_WRITE(V2) {
     } else {
         blinker.setMode(Blinker::OFF);
     }
+}
+
+// Lenkung (V3)
+BLYNK_WRITE(V3) {
+    int sliderValue = param.asInt();
+    lenkung.handleValue(sliderValue);
 }
