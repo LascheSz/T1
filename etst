@@ -1,0 +1,30 @@
+#include <Arduino.h>
+#include "Blinker/blinker.h"
+#include "Motor/motor.h"
+
+blinker Blinker;
+Motor Motor1(16, 17, 0, 1); // IN1, IN2, PWM-Kanal 0 und 1
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    if (Serial.available()) {
+        char cmd = Serial.read();
+        switch (cmd) {
+            // Blinker
+            case 'l': Blinker.blinkerLinks(); break;
+            case 'r': Blinker.blinkerRechts(); break;
+            case 'w': Blinker.warnblinker(); break;
+            case 's': Blinker.stopBlinker(); break;
+
+            // Motor
+            case 'f': Motor1.vorwaerts(); break;
+            case 'b': Motor1.rueckwaerts(); break;
+            case 'm': Motor1.stop(); break;
+        }
+    }
+
+    Blinker.loopBlinker();
+}
