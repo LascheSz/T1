@@ -1,44 +1,44 @@
-#include "blynk_callbacks.h"
-#include <Arduino.h>
-#include "BlynkConfig.h"   // Blynk-Konfiguration
+#include "blynk_callbacks.h"  // Enthält nun BlynkConfig + BlynkApiArduino + Blinker
 
-// Beispiel für Button V0
-BLYNK_WRITE(V0) // Blinker Links
-{
+extern Blinker blinker;     // Verweist auf dieselbe Instanz aus main.cpp
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Definition von setupBlynkCallbacks() – **nur hier**!
+// ──────────────────────────────────────────────────────────────────────────────
+void setupBlynkCallbacks() {
+    Serial.println("Blynk-Callbacks registriert");
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// ALLE BLYNK_WRITE(Vx)-Handler – **genau einmal** in diesem File!
+// ──────────────────────────────────────────────────────────────────────────────
+
+// Linker Blinker (V0)
+BLYNK_WRITE(V0) {
     int state = param.asInt();
-
     if (state == 1) {
         blinker.setMode(Blinker::LEFT);
-    }else if (state == 0) {
+    } else {
         blinker.setMode(Blinker::OFF);
     }
-};
+}
 
-BLYNK_WRITE(V1) // Blinker Rechts
-{
+// Rechter Blinker (V1)
+BLYNK_WRITE(V1) {
     int state = param.asInt();
-
     if (state == 1) {
         blinker.setMode(Blinker::RIGHT);
-    }else if (state == 0) {
+    } else {
         blinker.setMode(Blinker::OFF);
     }
+}
 
-};
-
-BLYNK_WRITE(V2) // Warnblinker
-{
+// Warnblinker (V2)
+BLYNK_WRITE(V2) {
     int state = param.asInt();
-
     if (state == 1) {
-        blinker.setMode(Blinker::WARNING);
-    }else if (state == 0) {
+        blinker.setMode(Blinker::HAZARD);
+    } else {
         blinker.setMode(Blinker::OFF);
     }
-};
-
-
-void setupBlynkCallbacks()
-{
-    Serial.println("Blynk-Callbacks registriert");
 }
