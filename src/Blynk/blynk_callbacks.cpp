@@ -15,12 +15,12 @@ void setupBlynkCallbacks() {
 
 // Linker Blinker (V0)
 BLYNK_WRITE(V0) {
-    int state = param.asInt();
-    if (state == 1) {
-        blinker.setMode(Blinker::LEFT);
-    } else {
-        blinker.setMode(Blinker::OFF);
-    }
+        int state = param.asInt();
+        if (state == 1) {
+            blinker.setMode(Blinker::LEFT);
+        } else {
+            blinker.setMode(Blinker::OFF);
+        }
 }
 
 // Rechter Blinker (V1)
